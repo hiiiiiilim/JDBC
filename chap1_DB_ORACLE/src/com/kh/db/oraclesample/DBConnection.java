@@ -13,7 +13,8 @@ public class DBConnection {
 		//selectBank();
 		//selectKhcafe();
 		//selectIf();
-		selectwhile();
+		//selectwhile();
+		insertBank();
 	}
 	
 	static void selectBank() {
@@ -130,7 +131,34 @@ public class DBConnection {
 		
 		try {
 			con = DriverManager.getConnection(url, user, passwoed);
-			System.out.println("데이터베이스연결성공");
+			System.out.println("데이터베이스 연결 성공");
+			String selectQuery = "select * from";
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	static void insertBank() {
+		String url = "jdbc:oracle:thin:@localhost:1521:xe";
+		String user = "khbank";
+		String passwoed = "khbank";
+		
+		try {
+			Connection con= DriverManager.getConnection(url, user, passwoed);
+			String insertQuery = "INSERT INTO BANK (account_id, account_number, account_name, balance, branch_name, last_transaction)"
+								+ "values (?,?,?,?,?,?)";
+			PreparedStatement insertState = con.prepareStatement(insertQuery);
+			insertState.setInt(1, 13);
+			insertState.setString(2, "789789789");
+			insertState.setString(3, "사아자");
+			insertState.setDouble(4, 1500.00);
+			insertState.setString(5, "kh");
+			insertState.setDate(6, Date.valueOf("2023-10-16"));
+			
+			int rowsInsert = insertState.executeUpdate();
+			System.out.println(rowsInsert + "row 추가됨");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
