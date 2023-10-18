@@ -1,4 +1,4 @@
-package com.kh.db.oraclesample;
+package com.kh.oracledb.CRUD;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -7,17 +7,16 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class DBConnection {
+public class selectSample {
 
 	public static void main(String[] args) {
-		//selectBank();
+		//selectAll();
 		//selectKhcafe();
-		//selectIf();
+		//selectOne();
 		//selectwhile();
-		insertBank();
 	}
 	
-	static void selectBank() {
+	static void selectAll() {
 		// 1. 드라이버 연결: Oracle JDBC 드라이버 클래스 이름
 		String driver = "oracle.jdbc.driver.OracleDriver";
 		//2. 오라클 내 컴퓨터 연결:데이터베이스 연결정보
@@ -46,7 +45,8 @@ public class DBConnection {
 				String branchName = result.getString("branch_name");
 				Date lastTransctionDate = result.getDate("last_transaction");
 	
-				System.out.println("ACCOUNT_ID : "+accountID+" ACCOUNT_NUMBER : "+accountNumber+" ACCOUNT_NAME : "+accountName+" BALANCE : "+balance+" BRANCH_NAME : "+branchName+" LAST_TRANSACTRION : "+lastTransctionDate);
+				System.out.println("ACCOUNT_ID : "+accountID+" ACCOUNT_NUMBER : "+accountNumber+" ACCOUNT_NAME : "+accountName+
+						" BALANCE : "+balance+" BRANCH_NAME : "+branchName+" LAST_TRANSACTRION : "+lastTransctionDate);
 				
 			}
 		} catch (SQLException e) {
@@ -81,7 +81,7 @@ public class DBConnection {
 		}
 	}
 	
-	static void selectIf() {
+	static void selectOne() {
 		String url = "jdbc:oracle:thin:@localhost:1521:xe";
 		String user = "khbank";
 		String password = "khbank";
@@ -138,30 +138,6 @@ public class DBConnection {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}	
 	}
-	
-	static void insertBank() {
-		String url = "jdbc:oracle:thin:@localhost:1521:xe";
-		String user = "khbank";
-		String passwoed = "khbank";
-		
-		try {
-			Connection con= DriverManager.getConnection(url, user, passwoed);
-			String insertQuery = "INSERT INTO BANK (account_id, account_number, account_name, balance, branch_name, last_transaction)"
-								+ "values (?,?,?,?,?,?)";
-			PreparedStatement insertState = con.prepareStatement(insertQuery);
-			insertState.setInt(1, 13);
-			insertState.setString(2, "789789789");
-			insertState.setString(3, "사아자");
-			insertState.setDouble(4, 1500.00);
-			insertState.setString(5, "kh");
-			insertState.setDate(6, Date.valueOf("2023-10-16"));
-			
-			int rowsInsert = insertState.executeUpdate();
-			System.out.println(rowsInsert + "row 추가됨");
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-}
+
