@@ -14,7 +14,7 @@ public class cafeModel {
 		try {
 			Connection con = DriverManager.getConnection(url, username, password);
 			System.out.println("연결 성공");
-			String sql = "INSERT INTO cafes	(cname, address, phone_number, operating_hours)"
+			String sql = "INSERT INTO cafes	(name, address, phone_number, operating_hours)"
 						+"VALUES(?,?,?,?)";
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setString(1, cname);

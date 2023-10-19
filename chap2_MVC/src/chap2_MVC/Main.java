@@ -13,6 +13,8 @@ public class Main {
 		//view.updatecafe();
 		//view.deleteCafe();
 		//view.deleteMenu();
-		view.deleteOrder();
+		//view.deleteOrder();
+		
+		controller.run();
 	}
 }
