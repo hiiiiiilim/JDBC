@@ -21,7 +21,7 @@ public class Main {
 			
 			//인스턴스 생성하여 컨트롤러 초기화
 			CafeController controller = new CafeController(con, view);
-			ProductController controller2 =  new ProductController(con, view2);
+			ProductsController controller2 =  new ProductsController(con, view2);
 			//카페정보 표시하는 메서드 가져오기
 		//	controller.displayAllCafes();
 			controller2.displayAllProducts();

@@ -1,4 +1,4 @@
-package com.kh.dtoSample;
+package com.kh.MVC_Singleton_Product;
 
 public class ProductsDTO {
 
@@ -8,7 +8,18 @@ public class ProductsDTO {
 	private double price;
 	private int stockQuantity;
 	
-
+	//기본생성자
+	public ProductsDTO() {
+		
+	}
+	public ProductsDTO(int productId, String productName, String category, double price, int stockQuantity) {
+		this.productId = productId;
+		this.productName = productName;
+		this.category = category;
+		this.price = price;
+		this.stockQuantity = stockQuantity;		
+	}
+	
 	//getter setter
 	public int getProductId() {
 		return productId;

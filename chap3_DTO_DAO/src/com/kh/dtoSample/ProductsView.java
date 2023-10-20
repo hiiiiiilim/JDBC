@@ -1,8 +1,11 @@
 package com.kh.dtoSample;
 
+import java.sql.SQLException;
 import java.util.List;
+import java.util.Scanner;
 
 public class ProductsView {
+	
 	public void displayProducts(List<ProductsDTO> products) {
 		for(ProductsDTO p : products){
 			System.out.println("product Id :" +p.getProductId());

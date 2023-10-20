@@ -1,13 +1,20 @@
-package com.kh.dtoSample;
+package com.kh.update_MVC_Sington;
 
-public class ProductsDTO {
-
+public class UpdateDTO {
 	private int productId;
 	private String productName;
 	private String category;
 	private double price;
 	private int stockQuantity;
 	
+	//기본생성자
+	public UpdateDTO() {
+		
+	}
+	public UpdateDTO(int productId, double price) {
+		this.productId = productId;
+		this.price = price;
+	}
 
 	//getter setter
 	public int getProductId() {
@@ -49,8 +56,4 @@ public class ProductsDTO {
 	public void setStockQuantity(int stockQuantity) {
 		this.stockQuantity = stockQuantity;
 	}
-	
-	
-	
-	
 }
