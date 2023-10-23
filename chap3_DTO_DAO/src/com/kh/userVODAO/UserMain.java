@@ -17,8 +17,47 @@ public class UserMain {
 		um.selectScanner();
 	}
 	
-
-
+	public boolean checkId(int userId/*id받는 파라메터*/) throws SQLException {
+		//1. DB연결
+		String jdbcURL = "jdbc:oracle:thin:@localhost:1521:xe";
+		String dbUserName = "khcafe";
+		String dbPassWord = "khcafe";
+		Connection cc = DriverManager.getConnection(jdbcURL, dbUserName, dbPassWord);
+		
+		//2.sql
+		String sql = "select * from userinfo where user_id = ?";
+		PreparedStatement ps = cc.prepareStatement(sql);
+		ps.setInt(1, userId);
+		
+		//결과 집합을 보는 것
+		ResultSet rs = ps.executeQuery();
+		if(rs.next()) {
+			int id = rs.getInt("user_id");
+			return id > 0;//아이디가 1이상이면 true
+		}
+		return false; //일치하지 않을때
+	}
+	
+	public boolean checkEmail(String email) throws SQLException {
+		//1. DB연결
+		String jdbcURL = "jdbc:oracle:thin:@localhost:1521:xe";
+		String dbUserName = "khcafe";
+		String dbPassWord = "khcafe";
+		Connection cc = DriverManager.getConnection(jdbcURL, dbUserName, dbPassWord);
+		
+		String sql = "select count(*) from userinfo where email = ?";
+		PreparedStatement st = cc.prepareStatement(sql);
+		st.setString(1, email);
+		ResultSet rs = st.executeQuery();
+		
+		if(rs.next()) {
+			int count = rs.getInt(1);
+			return count > 1;
+		}
+		
+		return false;
+	}
+	
 	public void selectScanner() {
 		// 1. DB연결 url, username, password
 		String jdbcURL = "jdbc:oracle:thin:@localhost:1521:xe";
@@ -59,8 +98,8 @@ public class UserMain {
 					System.out.println("Registration Date : " + rs.getDate("reg_date"));
 				}else {
 					//boolean ID or Email 하나가 일치하지 않는 경우 처리
-					boolean isTrue = (userId == rs.getInt("user_id")) ? true : false;
-					boolean emailTrue = email.equalsIgnoreCase(rs.getString("email"));
+					boolean isTrue = checkId(userId);
+					boolean emailTrue = checkEmail(email);
 					if(!isTrue && emailTrue) {
 						System.out.println("일치하지 않는 user ID입니다.");
 						System.out.println();
