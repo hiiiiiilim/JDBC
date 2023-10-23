@@ -15,8 +15,10 @@ public class UserMain {
 		um.selectAll();
 	}	
 
+	public void selectScanner
+	
 	public void selectAll() {
-		// 1. DB연결 url,username, password
+		// 1. DB연결 url, username, password
 		String jdbcURL = "jdbc:oracle:thin:@localhost:1521:xe";
 		String dbUserName = "khcafe";
 		String dbPassWord = "khcafe";
