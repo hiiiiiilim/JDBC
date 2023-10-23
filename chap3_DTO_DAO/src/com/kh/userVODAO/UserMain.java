@@ -52,7 +52,7 @@ public class UserMain {
 		
 		if(rs.next()) {
 			int count = rs.getInt(1);
-			return count > 1;
+			return count > 0;
 		}
 		
 		return false;
@@ -100,11 +100,12 @@ public class UserMain {
 					//boolean ID or Email 하나가 일치하지 않는 경우 처리
 					boolean isTrue = checkId(userId);
 					boolean emailTrue = checkEmail(email);
-					if(!isTrue && emailTrue) {
+					if(!isTrue&&emailTrue) {
 						System.out.println("일치하지 않는 user ID입니다.");
 						System.out.println();
-     					}else if(isTrue&&!emailTrue) {
+     				}else if(isTrue&&!emailTrue) {
 						System.out.println("일치하지 않는 user email입니다.");
+						System.out.println();
 					}else {
 						System.out.println("일치하는 user id 와 email을 찾을 수 없습니다.");
 						System.out.println();
